@@ -1,0 +1,15 @@
+target/
+.idea/
+*.iml
+*.log
+logs/
+log/
+lib/
+dependencies-config.xml
+rollout-validacao.xml
+digitador-sd-root.iml
+.project
+data/
+.settings/
+tmp/
+repository/
