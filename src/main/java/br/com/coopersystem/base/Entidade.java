@@ -1,14 +1,14 @@
-package br.com.coopersystem.model;
+package br.com.coopersystem.base;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import java.util.Date;
 import java.util.Objects;
 
 @MappedSuperclass
 public abstract class Entidade<T> {
-
-    @Id
-    private T id;
 
     @Column(name = "dt_cadastro")
     private Date dataCadastro;
@@ -31,13 +31,9 @@ public abstract class Entidade<T> {
         this.setDataAlteracao(new Date());
     }
 
-    public T getId() {
-        return id;
-    }
+    public abstract T getId();
 
-    public void setId(T id) {
-        this.id = id;
-    }
+    public abstract void setId(T id);
 
     public Date getDataCadastro() {
         return dataCadastro;
@@ -68,12 +64,12 @@ public abstract class Entidade<T> {
         if (this == o) return true;
         if (!(o instanceof Entidade)) return false;
         Entidade<?> entidade = (Entidade<?>) o;
-        return Objects.equals(id, entidade.id);
+        return Objects.equals(getId(), entidade.getId());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id);
+        return Objects.hash(getId());
     }
 }
